@@ -20,7 +20,7 @@ public class Cuadricula {
         return rand.nextInt(9) + 1;
     }
 
-    public void inicializar(int filas, int columnas) {
+    public void inicializar() {
 
         Node[] filaAnterior = new Node[columnas];
 
@@ -28,7 +28,7 @@ public class Cuadricula {
             Node[] filaActual = new Node[columnas];
             for (int j = 0; j < columnas; j++) {
                 //conecta left y right automaticamente
-                Node nuevo = listaNodos.agregar(numeroRandom());
+                Node nuevo = listaNodos.agregar(new Casilla(numeroRandom()));
                 filaActual[j] = nuevo;
 
                 //si fila > 0 conecta up y down
@@ -51,5 +51,16 @@ public class Cuadricula {
             //actualiza la fila anterior
             filaAnterior = filaActual;
         }
+    }
+
+    public ListaSimple getListaNodos(){
+        return listaNodos;
+    }
+
+    public int getFilas(){
+        return filas;
+    }
+    public int getColumnas(){
+        return columnas;
     }
 }

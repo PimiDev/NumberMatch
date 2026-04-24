@@ -10,15 +10,15 @@ import java.util.ArrayList;
  * @version 01 2026
  */
 public class Node {
-    private int number; // INFO part
+    private Casilla casilla; // INFO part
     private Node up, down,
             left, right,
             downLeft, downRight,
             upLeft, upRight;
 
 
-    public Node(int number) {
-        this.number = number;
+    public Node(Casilla casilla) {
+        this.casilla = casilla;
         up = null;
         down = null;
         left = null;
@@ -54,11 +54,16 @@ public class Node {
      * @return true if nodes contain the same value or add up to 10
      */
     public boolean isMatchValue(Node input) {
-        int n1 = this.number;
-        int n2 = input.getNumber();
-        //
-        return (n1 == n2) || (n1+n2 == 10);
+        Casilla c1 = this.casilla;
+        Casilla c2 = input.getCasilla();
+
+        // compareTo devuelve 0 si los valores son iguales
+        boolean sonIguales = (c1.compareTo(c2) == 0);
+        boolean sumanDiez = (c1.getValor() + c2.getValor() == 10);
+
+        return sonIguales || sumanDiez;
     }
+
 
     public Node getDown() {
         return down;
@@ -140,16 +145,20 @@ public class Node {
 
 
     public int getNumber() {
-        return number;
-    }
-    public void setNumber(int number) {
-        this.number = number;
+        return casilla.getValor();
     }
 
+    public Casilla getCasilla() {
+        return casilla;
+    }
+
+    public void setCasilla(Casilla casilla) {
+        this.casilla = casilla;
+    }
 
     @Override
     public String toString() {
-        return number + "";
+        return casilla.getValor() + "";
     }
 
 

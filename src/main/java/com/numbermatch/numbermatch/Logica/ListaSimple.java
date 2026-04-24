@@ -14,8 +14,8 @@ public class ListaSimple{
         return inicio;
     }
 
-    public Node agregar(int valor) {
-        Node nuevo = new Node(valor);
+    public Node agregar(Casilla casilla) {
+        Node nuevo = new Node(casilla);
         if (inicio == null) {
             inicio = nuevo;
         } else {
