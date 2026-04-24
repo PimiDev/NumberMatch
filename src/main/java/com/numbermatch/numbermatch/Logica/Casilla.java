@@ -2,8 +2,8 @@ package com.numbermatch.numbermatch.Logica;
 
 public class Casilla implements Comparable<Casilla> {
     private int valor;
-    private boolean marcado; // Para saber si el usuario la seleccionó
-    private boolean vacia;   // Para cuando haces match y el número "desaparece"
+    private boolean marcado; // saber si el usuario lo esta seleccionando
+    private boolean vacia;   // cuando se hace match para eliminar
     private boolean resaltada; // si se llega a pedir pista resalta
     public Casilla(int valor) {
         this.valor = valor;
@@ -14,15 +14,14 @@ public class Casilla implements Comparable<Casilla> {
 
     @Override
     public int compareTo(Casilla otra) {
-        /* Si devuelve 0, es que los números son iguales.
-           En Number Match podrías expandir esto para que
-           si suman 10 también sea un "match", pero por ahora
-           lo dejamos con igualdad numérica.
-        */
-        return Integer.compare(this.valor, otra.getValor());
+        if (this.valor == otra.getValor() || (this.valor + otra.getValor() == 10)) {
+            return 0;
+        }
+        else {
+            return Integer.compare(this.valor, otra.getValor());
+        }
     }
 
-    // --- Getters y Setters ---
     public int getValor() {
         return valor;
     }

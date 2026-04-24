@@ -2,9 +2,13 @@ package com.numbermatch.numbermatch.GUI;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
-public class BotonesView extends HBox {
+public class
+
+
+
+BotonesView extends VBox {
 
     private Button agregarFila;
     private Button pista;

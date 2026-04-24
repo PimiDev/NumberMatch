@@ -53,6 +53,58 @@ public class Cuadricula {
         }
     }
 
+    public void generarPista() {
+        Node[][] matriz = new Node[filas][columnas];
+        Node aux = listaNodos.getInicio();
+
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                matriz[i][j] = aux;
+                if (aux != null) aux = aux.getRight();
+            }
+        }
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                Node actual = matriz[i][j];
+
+
+                if (actual == null || actual.getCasilla().isVacia()) continue;
+
+                Casilla casillaActual = actual.getCasilla();
+
+
+                int[][] direcciones = {
+                        {0, 1},
+                        {1, 0},
+                        {1, 1},
+                        {1, -1}
+                };
+
+                for (int[] dir : direcciones) {
+                    int nuevaFila = i + dir[0];
+                    int nuevaCol = j + dir[1];
+
+
+                    if (nuevaFila >= 0 && nuevaFila < filas && nuevaCol >= 0 && nuevaCol < columnas) {
+                        Node vecino = matriz[nuevaFila][nuevaCol];
+
+                        if (vecino != null && !vecino.getCasilla().isVacia()) {
+
+                            if (casillaActual.compareTo(vecino.getCasilla()) == 0) {
+                                casillaActual.setResaltada(true);
+                                vecino.getCasilla().setResaltada(true);
+
+                                System.out.println("Pista lógica encontrada en: [" + i + "," + j + "]");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("No hay pistas disponibles.");
+    }
+
     public ListaSimple getListaNodos(){
         return listaNodos;
     }

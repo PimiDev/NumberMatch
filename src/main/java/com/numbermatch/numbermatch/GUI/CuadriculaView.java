@@ -16,7 +16,6 @@ public class CuadriculaView extends GridPane {
         this.setAlignment(Pos.CENTER);
         this.setHgap(8);
         this.setVgap(8);
-        this.setStyle("-fx-padding: 20; -fx-background-color: #2c3e50;"); // Un fondo oscuro para que resalten los círculos
 
         dibujarTablero();
     }
@@ -24,7 +23,6 @@ public class CuadriculaView extends GridPane {
     public void dibujarTablero() {
         this.getChildren().clear();
 
-        // Obtenemos los datos
         int filas = cuadriculaLogica.getFilas();
         int columnas = cuadriculaLogica.getColumnas();
 
@@ -40,9 +38,18 @@ public class CuadriculaView extends GridPane {
                     // GridPane.add(nodo, columna, fila)
                     this.add(casillaUI, j, i);
 
-                    // Como es una ListaSimple, el siguiente siempre es el de la derecha
+                    //el siguiente siempre es el de la derecha
                     actual = actual.getRight();
                 }
+            }
+        }
+    }
+
+    public void refrescarCasillas() {
+        // casillas que ya existen se pinten
+        for (javafx.scene.Node hijo : this.getChildren()) {
+            if (hijo instanceof CasillaView) {
+                ((CasillaView) hijo).actualizarEstado();
             }
         }
     }
